@@ -24,8 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+
+
+      return view('user-dashboard');
     }
 
-    
+    public function welcomeadmin()
+    {
+      $challenges = Challenge::all();
+
+        return view('admin-dashboard', compact('challenges'));
+    }
+
+
 }

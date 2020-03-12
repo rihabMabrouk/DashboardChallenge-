@@ -26,9 +26,7 @@
       </div>
       <div class="box-body">
 
-        <div>
-            <a style="margin: 19px;" href="{{ route('admin-new-challenge')}}" class="btn btn-primary">New Challenge</a>
-        </div>
+
 
         <table class="table table-hover">
 
@@ -46,9 +44,7 @@
                   <td>{{$challenge->title}} </td>
                   <td>{{$challenge->deadline}} </td>
                   <td>{{$challenge->status}} </td>
-                   <td><a href="{{route('challenges.edit',['id'=>$challenge->id])}}" class = "btn btn-info">Edit</a>
-                   
-                         <a onclick="return confirm('Are you sure?')" href="{{route('challenges.destroy',['id'=>$challenge->id])}}" class = "btn btn-danger">Delete</a>
+                   <td><a href="{{route('challenges.details',['id'=>$challenge->id])}}" class = "btn btn-info">Details</a>
                     </td>
                 </tr>
         @endforeach

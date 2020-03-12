@@ -41,4 +41,23 @@ class User extends Authenticatable
    {
        return $this->belongsToMany('App\Challenge');
    }
+
+
+   public function isAdmin() {
+       return $this->role === 'admin';
+    }
+
+    public function isUser() {
+       return $this->role === 'user';
+    }
+
+
+    public function isGuest() {
+           return $this->role === 'guest';
+        }
+
+        public function isOrganizer() {
+           return $this->role === 'organizer';
+        }
+
 }
