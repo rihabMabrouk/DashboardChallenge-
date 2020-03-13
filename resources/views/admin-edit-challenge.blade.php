@@ -76,7 +76,8 @@
                     </div>
                     <div class="form-group">
                       <label for="status">Status:</label>
-                      <select name="status" id="status" class="form-control" required value = "{{$challenge->status}}" onchange="showfield(this.options[this.selectedIndex].value)">
+                      <select name="status" id="status" class="form-control" required  onchange="showfield(this.options[this.selectedIndex].value)">
+                         <option value="{{$challenge->status}}">{{$challenge->status}}</option>
                           <option value="Open">Open</option>
                           <option value="Closed">Closed</option>
                     </select>

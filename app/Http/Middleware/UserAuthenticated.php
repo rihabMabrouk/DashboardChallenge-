@@ -19,7 +19,7 @@ class UserAuthenticated
       if( Auth::check() )
      {
          // if user admin take him to his dashboard
-         if ( Auth::user()->isAdmin() ) {
+         if ( Auth::user()->isAdmin() OR Auth::user()->isOrganizer()) {
               return redirect(route('admin-dashboard'));
          }
 

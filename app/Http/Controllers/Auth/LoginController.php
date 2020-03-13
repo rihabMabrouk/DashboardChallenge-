@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -42,7 +42,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         // to admin dashboard
-        if($user->isAdmin()) {
+        if($user->isAdmin() OR $user->isOrganizer()) {
             return redirect(route('admin-dashboard'));
         }
 
@@ -50,6 +50,10 @@ class LoginController extends Controller
         else if($user->isUser()) {
             return redirect(route('user-dashboard'));
         }
+
+      else  if ($user->isGuest()){
+        return redirect('guest');
+}
 
         abort(404);
     }

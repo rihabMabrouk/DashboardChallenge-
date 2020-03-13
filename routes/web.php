@@ -39,9 +39,17 @@ Route::get('admin-dashboard', function () {
     return view('admin-dashboard');
 });
 
+
+Route::get('users', function () {
+    return view('users');
+});
+
+Route::get('guest', function () {
+    return view('guest');
+});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/user-dashboard', 'ChallengeController@ShowChallengeslist')->name('user-dashboard');
 
 
@@ -65,3 +73,14 @@ Route::get('/challenges/{id}/edit','ChallengeController@edit')->name('challenges
 Route::post('/challenges/{id}/edit','ChallengeController@update')->name('challenges.update');
 
 Route::get('/challenges/{id}/details','ChallengeController@details')->name('challenges.details');
+Route::post('/challenges/{id}/details', 'ChallengeController@fileUploadPost')->name('challenges.upload.post');
+
+
+
+
+
+Route::get('/users','UserController@users')->name('users');
+Route::get('/users/{id}/edit','UserController@edit')->name('users.edit');
+Route::post('/users/{id}/edit','UserController@update')->name('users.update');
+
+Route::post('/comment/store', 'CommentController@store')->name('comment.add');

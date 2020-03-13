@@ -1,13 +1,4 @@
-
-
-
-
-
-
-
-
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html>
   <head>
     <meta charset="utf-8">
@@ -64,33 +55,77 @@
         <div class="box-body">
             <div class="row mt-5">
                 <div class="col-sm-8 offset-sm-2">
-                  <form action="{{route('challenges.details', $challenge->id )}}" method = "get">
+                  <form action="{{ route('challenges.upload.post', $challenge->id )}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                      {{$challenge}}
+
                       <label for="title">Title:</label>
-                      <input type="text" name = "title" id = "title" class="form-control" required value = "{{$challenge->title}}">
+                      <input type="text" name = "title" id = "title" class="form-control" required value = "{{$challenge->title}}" readonly="readonly">
                     </div>
                     <div class="form-group">
                       <label for="c">Description:</label>
-                      <output type="text" name = "description" id = "description" class="form-control" required value = "{{$challenge->description}}">
+                      <input type="text" name = "description" id = "description" class="form-control" required value = "{{$challenge->description}}" readonly="readonly">
                     </div>
                     <div class="form-group">
                       <label for="status">Status:</label>
-                      <select name="status" id="status" class="form-control" required value = "{{$challenge->status}}">
-
+                      <select name="status" id="status" class="form-control" required value = "{{$challenge->status}}" readonly="readonly">
+                            <option>{{$challenge->status}}</option>
                     </select>
                     <div id="divwinner"></div>
                     </div>
                     <div class="form-group">
                       <label for="deadline">Deadline:</label>
-                      <output type="date" name = "deadline" id = "deadline" class="form-control" required value = "{{$challenge->deadline}}">
+                      <input type="date" name = "deadline" id = "deadline" class="form-control" required value = "{{$challenge->deadline}}" readonly="readonly">
                     </div>
+                    <div class="col-md-6">
+                    <input type="file" name="file" class="form-control">
+                   </div>
                     <button type = "submit" class = "btn btn-success">Submit Your Code</button>
                   </form>
+
+
+
+
+
                 </div>
               </div>
+
           </div>
+
+
+          <hr />
+                              <h4>Display Comments</h4>
+                              @foreach($challenge->comments as $comment)
+                                  <div class="display-comment">
+
+                                      <strong>
+                                      {{ $comment->idWriter }}
+                                        </strong>
+
+                                      <p>{{ $comment->content }}</p>
+                                  </div>
+                              @endforeach
+                              <hr />
+
+  <h4 class="box-title"> Comments section</h4>
+          <div class="box-body">
+                        <div class="row mt-5">
+                            <div class="col-sm-8 offset-sm-2">
+
+                        <form method="post" action="{{ route('comment.add') }}">
+                              @csrf
+                              <div class="form-group">
+                                        <input type="text" name="comment" class="form-control" />
+                                        <input type="hidden" name="idChallenge" value="{{ $challenge->id }}" />
+                              </div>
+                                        <div class="form-group">
+                                             <input type="submit" class="btn btn-warning" value="Add Comment" />
+                                        </div>
+                        </form>
+                      </div>
+                      </div>
+       </div>
+
         <!-- /.box-body -->
         <div class="box-footer">
 

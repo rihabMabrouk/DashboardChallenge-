@@ -24,7 +24,7 @@ class AdminAuthenticated
          }
 
          // allow admin to proceed with request
-         else if ( Auth::user()->isAdmin() ) {
+         else if ( Auth::user()->isAdmin() OR Auth::user()->isOrganizer() ) {
               return $next($request);
          }
      }
